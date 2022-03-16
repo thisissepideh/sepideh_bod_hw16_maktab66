@@ -1,0 +1,22 @@
+.container{
+  text-align: center;
+  background-color: rgb(17, 44, 45);
+  color:white;
+  margin:5vh auto;
+  padding:5vh;
+  width: 50vw;
+  height: 70vh;
+  
+}
+
+.w-40{
+  width: 40%;
+}
+
+.w-50{
+  width:50%;
+}
+
+.w-100{
+  width: 100%;
+}
