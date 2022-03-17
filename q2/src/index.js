@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './font/Yekan.woff'
+import './font/Yekan.woff2'
+import './font/Yekan.ttf'
+
 
 ReactDOM.render(
   <React.StrictMode>
