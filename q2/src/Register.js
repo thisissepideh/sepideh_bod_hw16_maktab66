@@ -5,15 +5,22 @@ import styles from "./App.module.css";
 import Button from "react-bootstrap/Button";
 import React, { useState, useRef, useEffect } from "react";
 
+import ReactDOM from "react-dom";
+
 function Register(props) {
   const education = useRef("");
+  const cityElement = useRef("");
   const [cities, setCities] = useState([]);
   const [edu, setEdu] = useState("");
+  const [city, setCity] = useState("");
   useEffect(() => {
     fetch("./iranstates.json")
       .then((res) => res.json())
-      .then((res) => setCities(res));
+      .then((res) => {
+        setCities(res);
+      });
   });
+
   return (
     <div dir="rtl">
       <Form className="p-2">
@@ -28,19 +35,26 @@ function Register(props) {
         </Row>
         <Row className="mt-3">
           <Col>
-            <Form.Select aria-label="Default select example">
-              <option>استان</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <Form.Select
+              onChange={() => {
+                setCity(cityElement.current.value);
+              }}
+              ref={cityElement}
+            >
+              <option disabled>استان</option>
+
+              {Object.entries(cities).map(([key, value]) => (
+                <option value={key}>{key}</option>
+              ))}
             </Form.Select>
           </Col>
           <Col>
             <Form.Select aria-label="Default select example">
-              <option>شهر</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option disabled>شهر</option>
+              {city != "" &&
+                Object.entries(cities[city]).map(([key, value]) => (
+                  <option value={value}>{value}</option>
+                ))}
             </Form.Select>
           </Col>
         </Row>
@@ -61,8 +75,6 @@ function Register(props) {
             </Col>
           )}
         </Row>
-
-        
 
         <Row className="mt-3">
           <Col>
